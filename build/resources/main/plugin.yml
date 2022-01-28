@@ -1,0 +1,13 @@
+name: QRCodeMap
+main: net.rapust.qrcodemap.Main
+author: rapustka#3096
+version: 1.0
+api-version: 1.13
+commands:
+  qrcode:
+    description: Create a QR-Code
+    usage: /qrcode <text|link>
+    permission: qrcodemap.create
+    aliases:
+      - qr
+      - qc

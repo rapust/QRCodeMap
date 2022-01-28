@@ -1,0 +1,7 @@
+messages:
+  prefix: "&8[&eQR&8] "
+  onlyForPlayer: "&cOnly for players!"
+  handNotEmpty: "&cYour hand should be empty!"
+  success: "&aYou have successfully created a QR-Code!"
+settings:
+  changeMapName: false
