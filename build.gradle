@@ -26,13 +26,6 @@ shadowJar {
     getDestinationDirectory().set(new File(projectDir, "./fatjar"))
 }
 
-jar {
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    destinationDirectory.set(file("/Users/rapust/Documents/coding/TEST/server/plugins/"))
-}
-
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
