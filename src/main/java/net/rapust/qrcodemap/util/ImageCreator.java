@@ -6,11 +6,13 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import lombok.SneakyThrows;
 import net.rapust.qrcodemap.Main;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
+import org.bukkit.inventory.meta.MapMeta;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
+import java.io.File;
 
 public class ImageCreator {
 
@@ -21,14 +23,19 @@ public class ImageCreator {
         this.data = data;
     }
 
+    @SneakyThrows
     public void generate(Player player) {
         BufferedImage image = generateQRcode();
 
         ItemStack map = MapCreator.generateMap(image, player, data);
 
-        HashMap<ItemStack, String> info = new HashMap<>();
-        info.put(map, data);
-        Main.itemsToGive.put(player, info);
+        player.setItemInHand(map);
+        String id = String.valueOf(((MapMeta) map.getItemMeta()).getMapId());
+
+        File mapsData = new File(Main.getInstance().getDataFolder()+File.separator+"data.yml");
+        FileConfiguration maps = YamlConfiguration.loadConfiguration(mapsData);
+        maps.set(id, data);
+        maps.save(mapsData);
 
     }
 
